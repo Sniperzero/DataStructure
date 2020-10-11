@@ -2,7 +2,9 @@
 #include "SeqList.h"
 
 template <class elemType>
-SeqList<elemType>::SeqList(elemType array[], int n)//有参构造函数
+SeqList::SeqList(const elemType array[], const int &n)//有参构造函数
+// SeqList<elemType>::SeqList(const elemType array[], const int &n)
+// 这样写会出现link2019 的错误，原因是声明和引用不匹配？
 {
 	for (int i = 0; i < n; i++) {
 		Data[i] = array[i];
