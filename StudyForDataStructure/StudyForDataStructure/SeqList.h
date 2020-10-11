@@ -1,23 +1,40 @@
 #pragma once
+
 #ifndef SEQLIST_H_
 #define SEQLIST_H_
-
+//#include "stdafx.h"
 #include <iostream>
 using namespace std;
 
 //typedef class LNode* List;
 typedef int Position;// using Position = int;
 const int MAXSIZE = 100;
+//#define int ERROR = -1;
 template <class elemType>
 class SeqList
 {
 public:
 	//初始化
 	SeqList() { Last = 0; };//无参构造函数
-	SeqList(const elemType array[], const int &n);//有参构造函数
+	SeqList(const elemType array[], const int &n)//有参构造函数
+	{
+		for (int i = 0; i < n; i++) {
+			Data[i] = array[i];
+		}
+		Last = n;
+	}
 	~SeqList() {};//析构函数
-	Position findByValue(elemType x);//根据有序列，查找某个元素，并返回他的位置
-
+	
+	Position findByValue(elemType x)//根据有序列，查找某个元素出现的第一个位置，并返回他的位置
+	{
+		{
+			Position i = 0;
+			while (i <= Last && Data[i] != x)
+				i++;
+			if (i > Last) return -1;
+			else return i;
+		}
+	}
 	void showLength() { cout << "length = " << Last << endl; }
 	void showData() {
 		cout << "show data: " << endl;
@@ -26,8 +43,34 @@ public:
 		}
 	}
 private:
-
 	elemType Data[MAXSIZE];
 	int Last;
 };
 #endif
+/*
+template <class elemType>
+SeqList<elemType>::SeqList(const elemType array[], const int &n)//有参构造函数
+{// SeqList<elemType>::SeqList(const elemType array[], const int &n)
+ // 这样写会出现link2019 的错误，原因是声明和引用不匹配？
+	for (int i = 0; i < n; i++) {
+		Data[i] = array[i];
+	}
+	Last = n;
+}
+
+
+#define int ERROR = -1;
+template <class elemType>
+Position SeqList<elemType>::findByValue(elemType x)
+{
+	Position i = 0;
+	while (i <= Last && Data[i] != x)
+		i++;
+	if (i > Last) return ERROR;
+	else return i;
+}
+*/
+
+
+//#include "SeqList.cpp"
+

@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+//#include "SeqList.cpp"
 #include "SeqList.h"
 
 int main()
@@ -14,6 +15,7 @@ int main()
 	SeqList<int> list(a,3);
 	list.showLength();
 	list.showData();
+	cout << "按值查询，返回其位置 " << list.findByValue(1) << endl;
 	system("pause");
 	return 0;
 }
