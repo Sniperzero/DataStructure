@@ -16,6 +16,11 @@ int main()
 	list.showLength();
 	list.showData();
 	cout << "按值查询，返回其位置 " << list.findByValue(1) << endl;
+
+	list.insert(10, 2);
+	list.showData();
+	list.deleteByIndex(list.findByValue(3));
+	list.showData();
 	system("pause");
 	return 0;
 }
