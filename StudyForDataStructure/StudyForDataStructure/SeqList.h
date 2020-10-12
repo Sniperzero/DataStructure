@@ -18,7 +18,7 @@ public:
 	SeqList() { Last = 0; };//无参构造函数
 	SeqList(const elemType array[], const int &n)//有参构造函数
 	{
-		if (n > MAXSIZE) { cout << "The array is so large!" << endl;}
+		if (n > MAXSIZE) { cout << "The array is so large!" << endl; }
 		else {
 			for (int i = 0; i < n; i++) {
 				Data[i] = array[i];
@@ -44,7 +44,7 @@ public:
 		for (int end = Last; end >= index - 1; end--) {
 			Data[end + 1] = Data[end];//倒着循环，把最后一个值赋给他的下一个
 		}
-		Data[index-1] = x;//index-1 是因为从0 开始
+		Data[index - 1] = x;//index-1 是因为从0 开始
 		Last++;//更新长度
 		return;
 	}
