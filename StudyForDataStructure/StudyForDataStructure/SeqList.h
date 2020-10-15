@@ -1,5 +1,5 @@
 #pragma once
-
+/*顺序线性表实现：*/
 #ifndef SEQLIST_H_
 #define SEQLIST_H_
 //#include "stdafx.h"

@@ -5,6 +5,7 @@
 //#include "SeqList.cpp"
 #include "SeqList.h"
 #include "LinkList.h"
+#include "SeqStack.h"
 
 int main()
 {
@@ -56,6 +57,17 @@ int main()
 	cout << "remove 1 " << dllist.remove(1)<< endl;
 	dllist.showLinkList();
 
+	cout << endl;
+	cout << "show stack"  << endl;
+	SeqStack<int> newStack;
+	newStack.Pop();//此时会输出信息说是空栈
+	newStack.Push(4);
+	newStack.showData();
+	newStack.Push(3);
+	newStack.Push(2);
+	newStack.Push(1);
+	newStack.Pop();
+	newStack.showData();
 	system("pause");
 	return 0;
 }

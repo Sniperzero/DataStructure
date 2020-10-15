@@ -1,4 +1,5 @@
 #pragma once
+/*单链式线性表实现：*/
 #ifndef LINKLIST_H_
 #define LINKLIST_H_
 //#include "stdafx.h"
