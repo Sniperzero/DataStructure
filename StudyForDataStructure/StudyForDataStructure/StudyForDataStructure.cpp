@@ -68,6 +68,26 @@ int main()
 	newStack.Push(1);
 	newStack.Pop();
 	newStack.showData();
+
+	cout << endl;
+
+	cout << "show double stack" << endl;
+	DoubleSeqStack<int> newDoubleStack;
+	int leftTag = 1; int rightTag = 2;
+	newDoubleStack.Push(0,leftTag);
+	newDoubleStack.Push(1,leftTag);
+
+	newDoubleStack.Push(9, rightTag);
+	newDoubleStack.Push(8, rightTag);
+	newDoubleStack.show();
+
+	newDoubleStack.Push(2, leftTag);// »áÊä³öÕ»Âú
+	
+	newDoubleStack.Pop(leftTag);
+	newDoubleStack.show();
+
+	newDoubleStack.Pop(rightTag);
+	newDoubleStack.show();
 	system("pause");
 	return 0;
 }

@@ -62,6 +62,42 @@ private:
 	elemType _data[StackMAXSIZE];
 	int _Top;
 };
+const int DStackMAXSIZE = 4;
+template <class elemType>
+class DoubleSeqStack
+{
+private:
+	elemType _ddata[DStackMAXSIZE];
+	int _Top1;
+	int _Top2;
+public:
+	DoubleSeqStack() { _Top1 = -1; _Top2 = DStackMAXSIZE; }
+	// 有参构造函数 类似上面那个类。不同的是有两个循环，一个从头到中间，一个从尾到中间
+	void Push(elemType x, int tag) {
+		if (_Top2 - _Top1 == 1) { cout << "the double stach is full! " << endl; return; }
+		if (tag == 1) { _ddata[++_Top1] = x; }//tag 为连个栈的标识符
+		else { _ddata[--_Top2] = x; }
+	}
+	void Pop(int tag) {
+		if (tag == 1) {
+			if (_Top1 == -1) { cout << "the left stack is empty;" << endl; return;}
+			_ddata[_Top1--];
+		}
+		else {
+			if (_Top2 == DStackMAXSIZE) { cout << "the right stach isempty! " << endl; return;}
+			-_ddata[_Top2++];
+		}
+	}
+	void show() {
+		cout << "the left Top1: " << _Top1 << endl;
+		for (int i = 0; i <= _Top1; i++) { cout << _ddata[i] << endl; }
+		cout << endl;
+
+		cout << "the right Top2: " << _Top2 << endl;
+		for (int j = DStackMAXSIZE-1; j >= _Top2;j--) { cout << _ddata[j] << endl; }
+		
+	}
+};
 #endif
 
 /*
