@@ -88,6 +88,17 @@ int main()
 
 	newDoubleStack.Pop(rightTag);
 	newDoubleStack.show();
+
+	cout << endl;
+	cout << "show link stack" << endl;
+	LinkStack <int> ls;
+	ls.Pop();//会输出显示 栈是空的
+	ls.Push(1);
+	ls.Push(2);
+	ls.Push(3);
+	ls.Show();
+	ls.Pop();
+	ls.Show();
 	system("pause");
 	return 0;
 }

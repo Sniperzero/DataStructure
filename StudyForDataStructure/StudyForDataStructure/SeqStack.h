@@ -62,6 +62,7 @@ private:
 	elemType _data[StackMAXSIZE];
 	int _Top;
 };
+// 双顺序栈实现
 const int DStackMAXSIZE = 4;
 template <class elemType>
 class DoubleSeqStack
@@ -85,7 +86,7 @@ public:
 		}
 		else {
 			if (_Top2 == DStackMAXSIZE) { cout << "the right stach isempty! " << endl; return;}
-			-_ddata[_Top2++];
+			_ddata[_Top2++];
 		}
 	}
 	void show() {
@@ -98,6 +99,60 @@ public:
 		
 	}
 };
+//链式 栈 实现
+template <class elemType>
+struct Node
+{
+	elemType _data;//数据
+	Node<elemType> *_next;//链指针（存储下一个节点的地址）
+};
+
+template <class elemType>
+class LinkStack
+{
+private:
+	Node<elemType> *_head;//头结点
+public:
+	LinkStack() { _head = new Node<elemType>; _head->_next = NULL; }//无参构造函数
+	~LinkStack() {
+		while (_head != NULL)
+		{
+			Node<elemType>* q = _head;
+			_head = _head->_next;
+			delete q;
+		}
+	}
+	void Push(elemType x) {
+		//Node <elemType>*p = _head->_next;
+		Node <elemType>*s = new Node<elemType>;
+		cout << x << " push " << endl;
+		s->_data = x;
+		s->_next = _head;
+		_head = s;
+	}
+	void Pop() {
+		Node <elemType>*FirstCell = new Node<elemType>;
+		cout << _head->_data << " pop " << endl;
+		elemType Top;
+		//Node <elemType>*p = _head->_next;
+		if (_head->_next == NULL) { cout << "the stack is empty! " << endl; return; }
+		FirstCell = _head;
+		_head = FirstCell->_next;
+		Top = FirstCell->_data;
+		delete(FirstCell);
+	}
+	void Show() {
+		Node<elemType>*p = _head->_next;
+		while (p != NULL) {
+			cout << "show data: " << p->_data << endl;
+			cout << "show pointer address: " << p->_next << endl;
+			cout << endl;
+			p = p->_next;
+		}
+	}
+};
+
+
 #endif
 
 /*
