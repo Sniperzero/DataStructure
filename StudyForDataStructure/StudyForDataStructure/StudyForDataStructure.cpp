@@ -7,14 +7,26 @@
 #include "LinkList.h"
 #include "SeqStack.h"
 
+#include "BinaryTree.h"
+
+void chapter_one();
+
 int main()
 {
+	//chapter_one();
+	BinaryTree<int> t;
+	t.insert(1);
+	system("pause");
+	return 0;
+}
+
+void chapter_one() {
 	SeqList<int> nonelist;//无参构造得到的线性表
 	nonelist.showLength();
 	cout << "~~~~~~~~~~~~~~" << endl;
 	int a[] = { 1, 2, 3 };
 	//cout << sizeof(a)/4 << endl;
-	SeqList<int> list(a,3);
+	SeqList<int> list(a, 3);
 	list.showLength();
 	list.showData();
 	cout << "按值查询，返回其位置 " << list.findByValue(1) << endl;
@@ -36,7 +48,7 @@ int main()
 	cout << "按值9,查找序号，返回序号 " << llist.findByValue(9) << endl;
 	cout << "按值7,查找序号，返回序号 " << llist.findByValue(7) << endl;
 	cout << "按值6,查找序号，返回序号 " << llist.findByValue(6) << endl;
-	cout << "按值5,查找序号，返回序号 "<< llist.findByValue(5)<<endl;
+	cout << "按值5,查找序号，返回序号 " << llist.findByValue(5) << endl;
 	llist.insert(0, 0);//第0个序号后插入值100
 	cout << "第0个序号后插入值0" << endl;
 	llist.showLinkList();
@@ -54,11 +66,11 @@ int main()
 	double da[] = { 9.1, 7.2, 6.3, 5.4 };
 	LinkList<double> dllist(da, 4);
 	cout << "9.1, 7.2, 6.3, 5.4 " << endl;
-	cout << "remove 1 " << dllist.remove(1)<< endl;
+	cout << "remove 1 " << dllist.remove(1) << endl;
 	dllist.showLinkList();
 
 	cout << endl;
-	cout << "show stack"  << endl;
+	cout << "show stack" << endl;
 	SeqStack<int> newStack;
 	newStack.Pop();//此时会输出信息说是空栈
 	newStack.Push(4);
@@ -74,15 +86,15 @@ int main()
 	cout << "show double stack" << endl;
 	DoubleSeqStack<int> newDoubleStack;
 	int leftTag = 1; int rightTag = 2;
-	newDoubleStack.Push(0,leftTag);
-	newDoubleStack.Push(1,leftTag);
+	newDoubleStack.Push(0, leftTag);
+	newDoubleStack.Push(1, leftTag);
 
 	newDoubleStack.Push(9, rightTag);
 	newDoubleStack.Push(8, rightTag);
 	newDoubleStack.show();
 
 	newDoubleStack.Push(2, leftTag);// 会输出栈满
-	
+
 	newDoubleStack.Pop(leftTag);
 	newDoubleStack.show();
 
@@ -99,7 +111,6 @@ int main()
 	ls.Show();
 	ls.Pop();
 	ls.Show();
-	system("pause");
-	return 0;
 }
+
 

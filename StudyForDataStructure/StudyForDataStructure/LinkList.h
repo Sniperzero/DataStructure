@@ -53,6 +53,7 @@ public:
 			p = p->_next;
 			count++;
 		}
+		return p->_data;
 		if (count == index) { return p->_data; }// 找到返回指针p 即地址
 	}
 
