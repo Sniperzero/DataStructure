@@ -15,7 +15,31 @@ int main()
 {
 	//chapter_one();
 	BinaryTree<int> t;
-	t.insert(1);
+	t.insert(10);
+	t.insert(9);
+	t.insert(11);
+	/*
+	t.insert(8);
+	t.insert(12);
+	t.insert(7);
+	t.insert(13);
+	t.insert(6);
+	t.insert(14);
+	*/
+	t.PreOrderShowBinTree();
+	t.InOrderShowBinTree();
+	t.PostOrderShowBinTree();
+
+	t.InOrderShowBinTreeByStack();
+	t.PreOrderShowBinTreeByStack();
+
+	BinaryTree<string> t1;
+	string s = "ABD##FE###CG#H##I##";
+	t1.PreCreatBinTree(s);
+	t1.PreOrderShowBinTreeByStack();
+	t1.InOrderShowBinTreeByStack();
+	t1.PostOrderShowBinTreeByStack();
+	//t1.insert("a");
 	system("pause");
 	return 0;
 }
