@@ -39,6 +39,8 @@ int main()
 	t1.PreOrderShowBinTreeByStack();
 	t1.InOrderShowBinTreeByStack();
 	t1.PostOrderShowBinTreeByStack();
+	t1.LevelOrderShowBinTreeByqueue();
+	//t1.DepthOrderShowBinTreeByStack();
 	//t1.insert("a");
 	system("pause");
 	return 0;

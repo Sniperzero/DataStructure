@@ -8,6 +8,8 @@
 #define BINARYTREE_H_
 #include "SeqStack.h"
 #include<stack>
+#include<queue>
+
 #include<string>
 
 template<class elemType>
@@ -75,6 +77,16 @@ public:
 	{
 		cout << "使用栈 后序遍历： " << endl;
 		PostOrderShowBinTreeByStack(root);
+	}
+	void LevelOrderShowBinTreeByqueue()
+	{
+		cout << "使用队列 层序遍历： " << endl;
+		LevelOrderShowBinTreeByqueue(root);
+	}
+	void DepthOrderShowBinTreeByStack()
+	{
+		cout << "使用栈 深度优先 层序遍历： " << endl;
+		DepthOrderShowBinTreeByStack(root);
 	}
 private:
 	struct BinTreeNode // 把struct 放在类内
@@ -225,20 +237,43 @@ private:
 			if (!st.empty())
 			{
 				t = st.top();
-				if (t->_right == NULL || t->_right == r) {
+				if (t->_right != NULL && t->_right != r) {
+					// 有右儿子，且未被访问
+					t = t->_right;
+				}
+				else {
 					// 若无右儿子，则出栈，并访问该栈顶元素
 					st.pop();//出栈
 					cout << t->_data << endl;//访问该栈顶元素
 					r = t;//若该元素被访问，则标记该元素
-					t = NULL;
-				}
-				else {
-					// 有右儿子，且未被访问
-					t = t->_right;
+					t = NULL;//节点访问完，重置节点
+					// 若无上面语句，则当树遍历到最左端，会陷入死循环
+					/*原因是因为当不置于NULL时。t依然指向该栈顶结点，即最开始遍历到最左端的那个结点
+					此时，该结点又会进入两个循环语句，在内循环中跳入该else 语句，最后不断进行重复
+					不断输出 该栈顶结点，随陷入死循环。*/
 				}
 			}
 		}
 			
+	}
+
+	void LevelOrderShowBinTreeByqueue(BinTreeNode * t)
+	{
+		if (t == NULL) { return; }
+		queue<BinTreeNode *> qt;//创建一个队列
+		qt.push(t);//根节点入队
+		while (!qt.empty())
+		{
+			t = qt.front();//s使t指向队列首元素
+			qt.pop();//首元素出队
+			cout << t->_data << endl;
+			if (t->_left){qt.push(t->_left);}//如果左儿子非空，则左儿子入队
+			if (t->_right){qt.push(t->_right);}//如果右儿子非空，则右儿子入队
+		}
+	}
+	void DepthOrderShowBinTreeByStack(BinTreeNode * t)
+	{
+		
 	}
 };
 #endif
