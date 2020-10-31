@@ -88,6 +88,19 @@ public:
 		cout << "使用栈 深度优先 层序遍历： " << endl;
 		DepthOrderShowBinTreeByStack(root);
 	}
+	
+	void PreOrderPrintLeaves()// 输出叶子结点
+	{
+		cout << "输出叶子结点： " << endl;
+		PreOrderPrintLeaves(root);
+	}
+	int PostOrderGerHeight()
+	{
+		cout << "输出树的高度： " << endl;
+		int height = PostOrderGerHeight(root);
+		cout << "高度= " << height << endl;
+		return height;
+	}
 private:
 	struct BinTreeNode // 把struct 放在类内
 	{
@@ -274,6 +287,28 @@ private:
 	void DepthOrderShowBinTreeByStack(BinTreeNode * t)
 	{
 		
+	}
+	void PreOrderPrintLeaves(BinTreeNode * t)
+	{
+		if (t == NULL) {return;}
+		if (t->_left == NULL && t->_right == NULL) {
+			cout << t->_data << endl;
+		}
+			PreOrderPrintLeaves(t->_left);
+			PreOrderPrintLeaves(t->_right);
+	}
+	int PostOrderGerHeight(BinTreeNode * t)
+	{
+		int HL, HR, MaxH;
+		if (t != NULL)
+		{
+			HL = PostOrderGerHeight(t->_left);
+			HR = PostOrderGerHeight(t->_right);
+			MaxH = (HL > HR) ? HL : HR;
+			return (MaxH + 1);
+		}
+		else
+			return 0;
 	}
 };
 #endif

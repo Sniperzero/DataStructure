@@ -41,6 +41,8 @@ int main()
 	t1.PostOrderShowBinTreeByStack();
 	t1.LevelOrderShowBinTreeByqueue();
 	//t1.DepthOrderShowBinTreeByStack();
+	t1.PreOrderPrintLeaves();//输出叶子结点
+	t1.PostOrderGerHeight();//输出树的高度
 	//t1.insert("a");
 	system("pause");
 	return 0;
