@@ -18,21 +18,37 @@ int main()
 	t.insert(10);
 	t.insert(9);
 	t.insert(11);
-	/*
+	t.insert(2);
+	t.insert(16);
 	t.insert(8);
-	t.insert(12);
-	t.insert(7);
-	t.insert(13);
-	t.insert(6);
+	t.insert(5);
 	t.insert(14);
-	*/
+	t.insert(3);
+	// 前序(后序)+中序可确定唯一二叉树；
 	t.PreOrderShowBinTree();
 	t.InOrderShowBinTree();
-	t.PostOrderShowBinTree();
-
-	t.InOrderShowBinTreeByStack();
-	t.PreOrderShowBinTreeByStack();
-
+	// 寻找值find
+	t.findElement(14, 1);
+	t.findElement(14, 2);
+	// 寻找最大最小值
+	t.findMin();
+	t.findMax();
+	// 删除操作
+	
+	cout << "删除操作：" << endl;
+	cout << "第1种情况：" << endl;
+	t.remove(14);//第一种情况，无左右儿子
+	t.PreOrderShowBinTree();
+	cout << "第2种情况：" << endl;
+	t.remove(5);//第2种情况，右一个儿子
+	t.PreOrderShowBinTree();
+	cout << "第3种情况：" << endl;
+	t.remove(10);//第3种情况，右两个儿子
+	t.PreOrderShowBinTree();
+	
+	//t.PreOrderShowBinTreeByStack();
+	// 分隔符
+	cout << "~~~~~~~~~~~~~~~~~~~~~" << endl;
 	BinaryTree<string> t1;
 	string s = "ABD##FE###CG#H##I##";
 	t1.PreCreatBinTree(s);

@@ -1,7 +1,10 @@
 /*
 	二叉树
-	采用递归实现前序，中序，后序
+	采用递归实现前序，中序，后序 层序
 	除了递归 可采用堆栈实现遍历
+
+	二叉搜索树(插入,删除，寻值，寻最大值，寻最小值)
+
 */
 #pragma once
 #ifndef BINARYTREE_H_
@@ -36,11 +39,45 @@ public:
 	{
 		makeEmpty(root);
 	}
-
 	void insert(const elemType & x)
 	{
 		insert(x, root);
-		
+	}
+	void remove(const elemType & x)
+	{
+		remove(x, root);
+	}
+	void findElement(const elemType &x,int tag)
+	{
+		BinTreeNode *newt;
+		if (tag == 1) {
+			newt = findElement(x, root);//采用尾递归 效率不如循环迭代
+			if (newt != NULL) { cout << "采用尾递归-已找到元素:" << newt->_data << endl; }
+			else { cout << "未找到！考虑是否未建立二叉树或该元素不存在" << endl; }
+		}
+		else if (tag == 2) {
+			newt = findElementByIter(x, root);//查找效率取决于树的高度
+			if (newt != NULL) { cout << "采用迭代-已找到元素:" << newt->_data << endl; }
+			else { cout << "未找到！考虑是否未建立二叉树或该元素不存在" << endl; }
+		}
+		else {
+			cout << "tag must be int(1) or int(2)；" << endl;
+			cout << "The int(1) is 尾递归！" << endl << "The int(2) is 迭代！" << endl;
+		}
+	}
+	const elemType & findMin() const
+	{
+		BinTreeNode *newt;
+		newt = findMin(root);
+		if (newt == NULL) { cout << "错误！考虑是否未建立二叉树~" << endl; }
+		else { cout << "该二叉树的最小值为= " << newt->_data << endl; return newt->_data; }
+	}
+	const elemType & findMax() const
+	{
+		BinTreeNode *newt;
+		newt = findMax(root);
+		if (newt == NULL) { cout << "错误！考虑是否未建立二叉树~" << endl; }
+		else { cout << "该二叉树的最大值为= " << newt->_data << endl; return newt->_data; }
 	}
 	void PreCreatBinTree(elemType x)
 	{
@@ -117,13 +154,14 @@ private:
 	{
 		if (t != NULL)
 		{
-			makeEmpty(t->_left);
+			makeEmpty(t->_left);//递归
 			makeEmpty(t->_right);
 			delete t;
 		}
 		t = NULL;
 	}
-	/*插入构建二叉树，此二叉树的插入时按大小*/
+	/*插入构建二叉树，此二叉树的插入时按大小
+	每次只能插入一个元素，故以此在每层判断(与结点比较大小)*/
 	void insert(const elemType &x, BinTreeNode * & t)
 	{
 		if (t == NULL)
@@ -135,6 +173,7 @@ private:
 		else
 			;
 	}
+	
 	BinTreeNode *clone(BinTreeNode *t)const
 	{
 		if (t == NULL)
@@ -142,6 +181,85 @@ private:
 		else
 			return new BinTreeNode(t->_data, clone(t->_left), clone(t->_right));
 	}
+	BinTreeNode * findElement(const elemType &x, BinTreeNode *t)
+	{
+		if (t == NULL)
+			return NULL;
+		if (x < t->_data) { return findElement(x, t->_left); }
+		else if (x > t->_data) { return findElement(x, t->_right); }
+		else { return t; }//未找到
+	}
+	BinTreeNode * findElementByIter(const elemType &x, BinTreeNode *t)
+	{
+		while (t != NULL){
+			if (x < t->_data) {
+				t = t->_left;
+			}
+			else if (x > t->_data) {
+				t = t->_right;
+			}
+			else {
+				return t;//查找成功
+			}
+		}
+		return NULL;
+	}
+	BinTreeNode * findMin(BinTreeNode *t) const
+	{
+		//最小值一定在最左边
+		if (t == NULL)
+			return NULL;
+		else if (t->_left == NULL) {// 代表一定找到最左端
+			return t;
+		}
+		else {
+			return findMin(t->_left);
+		}
+	}
+	BinTreeNode * findMax(BinTreeNode *t) const
+	{
+		//最大值一定在最右边
+		if (t != NULL) {
+			while (t->_right != NULL) {
+				t = t->_right;
+			}
+		}
+		return t;
+	}
+
+	void remove(const elemType & x, BinTreeNode * & t)
+	{
+		if (t == NULL) return;
+		else if (x < t->_data) {
+			remove(x, t->_left);
+		}
+		else if (x > t->_data) {
+			remove(x, t->_right);
+		}
+		else {//找到节点位置
+			if (t->_left != NULL&&t->_right != NULL) {
+				// 情况3 删除节点有两个儿子- 最复杂情况
+				//BinTreeNode *tmp;
+				t->_data = findMin(t->_right)->_data;//寻找右树中的最小值赋给已经找到的该节点
+				remove(t->_data, t->_right);//在删除结点右子树最小值
+			}
+			else {
+				//情况1 删除节点无儿子 和情况2 删除节点只有一个儿子
+				BinTreeNode *oldNode = t;
+				if (!t->_left) {
+					// 有右孩子或无子结点
+					t = t->_right;
+				}
+				else if (!t->_right) {
+					// 有左孩子或无子结点
+					t = t->_left;
+				}
+				delete oldNode;
+			}
+		}
+	}
+
+
 	/*前序创建二叉树
 	  input： 插入元素，可为一个字符数组或vector；pos为位置迭代变量
 	*/
