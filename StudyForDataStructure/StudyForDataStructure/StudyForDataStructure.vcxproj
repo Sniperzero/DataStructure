@@ -145,6 +145,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AvlTree.h" />
+    <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="LinkList.h" />
     <ClInclude Include="SeqList.h" />

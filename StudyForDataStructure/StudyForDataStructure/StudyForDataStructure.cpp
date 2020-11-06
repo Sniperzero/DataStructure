@@ -9,57 +9,21 @@
 
 #include "BinaryTree.h"
 
-void chapter_one();
+#include "BinaryHeap.h"
+#include<vector>
 
+void chapter_one();
+void binartTreeDemo();
 int main()
 {
 	//chapter_one();
-	BinaryTree<int> t;
-	t.insert(10);
-	t.insert(9);
-	t.insert(11);
-	t.insert(2);
-	t.insert(16);
-	t.insert(8);
-	t.insert(5);
-	t.insert(14);
-	t.insert(3);
-	// 前序(后序)+中序可确定唯一二叉树；
-	t.PreOrderShowBinTree();
-	t.InOrderShowBinTree();
-	// 寻找值find
-	t.findElement(14, 1);
-	t.findElement(14, 2);
-	// 寻找最大最小值
-	t.findMin();
-	t.findMax();
-	// 删除操作
-	
-	cout << "删除操作：" << endl;
-	cout << "第1种情况：" << endl;
-	t.remove(14);//第一种情况，无左右儿子
-	t.PreOrderShowBinTree();
-	cout << "第2种情况：" << endl;
-	t.remove(5);//第2种情况，右一个儿子
-	t.PreOrderShowBinTree();
-	cout << "第3种情况：" << endl;
-	t.remove(10);//第3种情况，右两个儿子
-	t.PreOrderShowBinTree();
-	
-	//t.PreOrderShowBinTreeByStack();
-	// 分隔符
-	cout << "~~~~~~~~~~~~~~~~~~~~~" << endl;
-	BinaryTree<string> t1;
-	string s = "ABD##FE###CG#H##I##";
-	t1.PreCreatBinTree(s);
-	t1.PreOrderShowBinTreeByStack();
-	t1.InOrderShowBinTreeByStack();
-	t1.PostOrderShowBinTreeByStack();
-	t1.LevelOrderShowBinTreeByqueue();
-	//t1.DepthOrderShowBinTreeByStack();
-	t1.PreOrderPrintLeaves();//输出叶子结点
-	t1.PostOrderGerHeight();//输出树的高度
-	//t1.insert("a");
+	//binartTreeDemo();
+	vector<int>temp = { 13, 21, 16, 24, 31, 19, 68, 65, 26,32 };
+	BinaryHeap<int> h(temp);
+	h.insert(14);
+	h.deleteMin();
+	vector<int>tmp = { 9, 6, 12, 3, 8, 7 };
+	BinaryHeap<int> h1(tmp);
 	system("pause");
 	return 0;
 }
@@ -156,5 +120,53 @@ void chapter_one() {
 	ls.Pop();
 	ls.Show();
 }
+void binartTreeDemo()
+{
+	BinaryTree<int> t;
+	t.insert(10);
+	t.insert(9);
+	t.insert(11);
+	t.insert(2);
+	t.insert(16);
+	t.insert(8);
+	t.insert(5);
+	t.insert(14);
+	t.insert(3);
+	// 前序(后序)+中序可确定唯一二叉树；
+	t.PreOrderShowBinTree();
+	t.InOrderShowBinTree();
+	// 寻找值find
+	t.findElement(14, 1);
+	t.findElement(14, 2);
+	// 寻找最大最小值
+	t.findMin();
+	t.findMax();
+	// 删除操作
 
+	cout << "删除操作：" << endl;
+	cout << "第1种情况：" << endl;
+	t.remove(14);//第一种情况，无左右儿子
+	t.PreOrderShowBinTree();
+	cout << "第2种情况：" << endl;
+	t.remove(5);//第2种情况，右一个儿子
+	t.PreOrderShowBinTree();
+	cout << "第3种情况：" << endl;
+	t.remove(10);//第3种情况，右两个儿子
+	t.PreOrderShowBinTree();
+
+	//t.PreOrderShowBinTreeByStack();
+	// 分隔符
+	cout << "~~~~~~~~~~~~~~~~~~~~~" << endl;
+	BinaryTree<string> t1;
+	string s = "ABD##FE###CG#H##I##";
+	t1.PreCreatBinTree(s);
+	t1.PreOrderShowBinTreeByStack();
+	t1.InOrderShowBinTreeByStack();
+	t1.PostOrderShowBinTreeByStack();
+	t1.LevelOrderShowBinTreeByqueue();
+	//t1.DepthOrderShowBinTreeByStack();
+	t1.PreOrderPrintLeaves();//输出叶子结点
+	t1.PostOrderGerHeight();//输出树的高度
+							//t1.insert("a");
+}
 

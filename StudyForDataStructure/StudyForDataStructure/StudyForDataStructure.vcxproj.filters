@@ -36,6 +36,12 @@
     <ClInclude Include="BinaryTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BinaryHeap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AvlTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
